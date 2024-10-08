@@ -29,15 +29,16 @@ PROJECTS = ITEMS FOR SALE
 PLEDGES = BIDS/OFFERS FOR SALE
 
 | URL | HTTP Method | Purpose | Request Body | Success Response Code | Authentication/Authorisation |
+| --- | --- | --- | --- |--- |--- |
 | /projects | GET | Returns all items | N/A | 200 | N/A |
 | /projects | POST | Creates a new item for offers/sale | Project object | 201 | Must be an existing user and logged in |
 | /projects/:id| GET | Returns the item with ID as specified | N/A | 200 | N/A |
 | /projects/:id | PUT | Updates the item with ID as specified | Project object | 201 | Must be an existing user who owns item and logged in |
-| |  |    |  |  |  |
+| --- | --- | --- | --- |--- |--- |
 | /pledges | POST | Creates a new bid/offer for item | Pledge object | 201 | Must be an existing user who does not own the item and is logged in |
 | /pledges/:id | GET | Returns the bid/offer with ID as specified | N/A | 200 | N/A |
 | /pledges/:id | DELETE | Deletes the bid/off with ID as specified | N/A | 200 | Must be an existing user who made the bid/offer and is logged in |
-| |  |    |  |  |  |
+| --- | --- | --- | --- |--- |--- |
 | /users | GET | Returns all users | N/A | 200 | N/A |
 | /users | POST | User signs up | User object | 201 | N/A |
 | /users/login | POST | User logs in | User object | 200 | N/A |
