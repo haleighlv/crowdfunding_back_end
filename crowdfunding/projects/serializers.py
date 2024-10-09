@@ -3,6 +3,8 @@ from django.apps import apps
 
 
 class PledgeSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source="owner_id")
+
     class Meta:
         model = apps.get_model("projects.Pledge")
         fields = "__all__"

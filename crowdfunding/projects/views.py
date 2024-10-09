@@ -70,3 +70,52 @@ class PledgeList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        pledges = self.get.object(pk)
+        serializer = ProjectDetailSerializer(
+            instance=pledges,
+            data=request.data,
+            partial=True,
+        )   
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+                
+class PledgeDetail(APIView):
+
+    def get(self, request):
+        pledges = Pledge.objects.all()
+        serializer = PledgeSerializer(pledges, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = PledgeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(owner=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        pledges = self.get.object(pk)
+        serializer = ProjectDetailSerializer(
+            instance=pledges,
+            data=request.data,
+            partial=True,
+        )   
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
