@@ -3,7 +3,7 @@ from django.apps import apps
 
 
 class PledgeSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source="owner_id")
+    supporter = serializers.ReadOnlyField(source="supporter_id")
 
     class Meta:
         model = apps.get_model("projects.Pledge")
@@ -11,7 +11,7 @@ class PledgeSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source="owner_id")
+    owner = serializers.ReadOnlyField(source="owner=_id")
 
     class Meta:
         model = apps.get_model("projects.Project")
@@ -22,13 +22,13 @@ class ProjectDetailSerializer(ProjectSerializer):
     pledges = PledgeSerializer(many=True, read_only=True)
 
 
-def update(self, instance, validated_data):
-    instance.title = validated_data.get("title", instance.title)
-    instance.description = validated_data.get("description", instance.description)
-    instance.goal = validated_data.get("goal", instance.goal)
-    instance.image = validated_data.get("image", instance.image)
-    instance.is_open = validated_data.get("is_open", instance.is_open)
-    instance.data_created = validated_data.get("date_created", instance.date_created)
-    instance.owner = validated_data.get("owner, instance.owner")
-    instance.save()
-    return instance
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get("title", instance.title)
+        instance.description = validated_data.get("description", instance.description)
+        instance.goal = validated_data.get("goal", instance.goal)
+        instance.image = validated_data.get("image", instance.image)
+        instance.is_open = validated_data.get("is_open", instance.is_open)
+        instance.data_created = validated_data.get("date_created", instance.date_created)
+        instance.owner = validated_data.get("owner, instance.owner")
+        instance.save()
+        return instance
