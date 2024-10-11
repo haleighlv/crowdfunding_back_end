@@ -8,7 +8,7 @@ Stationery Destash
 A website for people to upload and sell their collectable stationery and stickers.
 
 ### Intended Audience/User Stories
-Stationery addicts like myself who purchase collectable stationery items and stickers and often find themselves with too much (is it even possible you are asking?) are able to upload and sell or trade their excess items.
+As a stationery addict who has a tendency to buy excess collectible stationery, I want a place that I am able to sell or give away my excess items. I'd also like the opportunity to purchase items I missed out on or are unique.
 
 ### Front End Pages/Functionality
 - Home page
