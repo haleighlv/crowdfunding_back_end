@@ -3,45 +3,43 @@ Haleigh Vinicombe
 
 ## Planning:
 ### Concept/Name
-Stationery Destash
+A Hand Up
 
-A website for people to upload and sell their collectable stationery and stickers.
+A website for people without access to mental health treatment to crowdfund the funds to enable them to access treatment.
 
 ### Intended Audience/User Stories
-- As a stationery addict who has a tendency to buy excess collectible stationery, I want a place that I am able to sell or give away my excess items.
+- As someone with a mental health condition, I want to be able to set up a crowdfunding project to raise funds for treatment.
 
-- As a stationery buyer I'd also like the opportunity to purchase items I missed out on or are unique.
+- As someone who has the means to support others, I would like to support those in need to access treatment
 
-- As someone making a pledge/bid, I want the process to be straightforward.
+- As someone making a pledge, I want the process to be straightforward.
 
 ### Front End Pages/Functionality
 - Home page
-    - Link to list items
-    - Link to browse items on offer
-    - Selection of recently uploaded items
+    - Link to create project
+    - Link to browse current projects
+    - Selection of recently created projects
 - User sign up page
-    - Page for users to sign up to enable them to either upload or buy items from the site
-- Upload items page
-    - Form to collect details of item and image
+    - Page for users to sign up to enable them to create a project or bid on a project
+- Create project page
+    - Form to collect details of project and amount needed to be raised
 - Browse page
-    - Ability to browse all items submitted
+    - Ability to browse all current projects
 -  Bid/Pledge page
-    - Form for user to make a bid on an item 
+    - Form for user to make a pledge for a project
 
 ### API Spec
-PROJECTS = ITEMS FOR SALE
-PLEDGES = BIDS/OFFERS FOR SALE
 
 | URL | HTTP Method | Purpose | Request Body | Success Response Code | Authentication/Authorisation |
 | --- | --- | --- | --- |--- |--- |
-| /projects | GET | Returns all items | N/A | 200 | N/A |
-| /projects | POST | Creates a new item for offers/sale | Project object | 201 | Must be an existing user and logged in |
-| /projects/:id| GET | Returns the item with ID as specified | N/A | 200 | N/A |
-| /projects/:id | PUT | Updates the item with ID as specified | Project object | 201 | Must be an existing user who owns item and logged in |
+| /projects | GET | Returns all projects | N/A | 200 | N/A |
+| /projects | POST | Creates a new crowdfunding project | Project object | 201 | Must be an existing user and logged in |
+| /projects/:id| GET | Returns the project with ID as specified | N/A | 200 | N/A |
+| /projects/:id | PUT | Updates the project with ID as specified | Project object | 201 | Must be an existing user who owns project and logged in |
 | --- | --- | --- | --- |--- |--- |
-| /pledges | POST | Creates a new bid/offer for item | Pledge object | 201 | Must be an existing user who does not own the item and is logged in |
-| /pledges/:id | GET | Returns the bid/offer with ID as specified | N/A | 200 | N/A |
-| /pledges/:id | DELETE | Deletes the bid/off with ID as specified | N/A | 200 | Must be an existing user who made the bid/offer and is logged in |
+| /pledges | POST | Creates a new pledge for project | Pledge object | 201 | Must be an existing user own project and is logged in |
+| /pledges/:id | GET | Returns the pledge with ID as specified | N/A | 200 | N/A |
+| /pledges/:id | DELETE | Deletes the pledge with ID as specified | N/A | 200 | Must be an existing user who made the pledge and is logged in |
 | --- | --- | --- | --- |--- |--- |
 | /users | GET | Returns all users | N/A | 200 | N/A |
 | /users | POST | User signs up | User object | 201 | N/A |
@@ -50,4 +48,4 @@ PLEDGES = BIDS/OFFERS FOR SALE
 | /users/:id | DELETE | Deletes the user with the ID as specified as well as any items or bids currently active | N/A | 200 | N/A | Must be an existing user who is logged in or admin
 
 ### DB Schema
-(https://github.com/haleighlv/crowdfunding_back_end/blob/main/*.png)
+(https://github.com/haleighlv/crowdfunding_back_end/blob/main/DBSchema.png)
