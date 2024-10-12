@@ -48,4 +48,4 @@ A website for people without access to mental health treatment to crowdfund the 
 | /users/:id | DELETE | Deletes the user with the ID as specified as well as any items or bids currently active | N/A | 200 | N/A | Must be an existing user who is logged in or admin
 
 ### DB Schema
-(https://github.com/haleighlv/crowdfunding_back_end/blob/6b5f2c9865fb66f8437909e1f5465c5980c61805/DBSchema.png)
+(https://github.com/haleighlv/crowdfunding_back_end/blob/main/DBSchema_Updated.png)
