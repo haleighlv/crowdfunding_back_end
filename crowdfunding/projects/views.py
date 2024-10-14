@@ -75,7 +75,7 @@ class PledgeList(APIView):
 
 class PledgeDetail(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsSupporterOrReadOnly]
-   
+
     def get_object(self, pk):
         try:
             pledge = Pledge.objects.get(pk=pk)
@@ -95,13 +95,15 @@ class PledgeDetail(APIView):
             instance=pledge,
             data=request.data,
             partial=True,
-        )   
+        )
 
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
 
-        return Response(
-            serializer.errors,
-            status=status.HTTP_400_BAD_REQUEST
-        )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        pledge = self.get_object(pk)
+        pledge.delete()
+        return Response()

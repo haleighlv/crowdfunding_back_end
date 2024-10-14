@@ -8,25 +8,45 @@ A Hand Up
 A website for people without access to mental health treatment to crowdfund the funds to enable them to access treatment.
 
 ### Intended Audience/User Stories
-- As someone with a mental health condition, I want to be able to set up a crowdfunding project to raise funds for treatment.
+Intended audience: People with a mental health condition who are unable to access treatment due to costs.
 
-- As someone who has the means to support others, I would like to support those in need to access treatment
+- As a user I would like to be able to sign up for an account.
+- As a user with a mental health condition, I want to be able to set up a crowdfunding project to raise funds for treatment.
+- As a user I would like to tell my story and add photos to my project.
+- As a user who has started a crowdfunding project I would like to see how much my project has earnt.
+- As a user I would like to be abe to update my details delete my account/
 
-- As someone making a pledge, I want the process to be straightforward.
+- As a supporter I would like to be able to to sign up for an account.
+- As a supporter who has an interest in mental health and treatments, I would like to be able to read peoples stories and the treatment they are looking to undertake.
+- As a supporter who has the means to support others, I would like to support those in need to access treatment.
+- As a supporter, I want the process to be straightforward and I would like to see a list of all pledges I have made.
+- As a supporter, I would like to be able to update my details or delete my account.
+
+- As a super user, I want to be able to see a list of all projects.
+- As a super user, I want to be able to see a list of all users.
+- As a super user, I want to be able to see a list of all pledges.
+
 
 ### Front End Pages/Functionality
 - Home page
+    - Link to sign up/user profile 
     - Link to create project
-    - Link to browse current projects
+    - List of top projects by pledge
     - Selection of recently created projects
 - User sign up page
     - Page for users to sign up to enable them to create a project or bid on a project
+- User profile page
+    - A list of all my uploaded projects
+    - A list of all my pledges
+    - My personal details (name, email, mobile)
+    - A way to delete my account
 - Create project page
     - Form to collect details of project and amount needed to be raised
-- Browse page
-    - Ability to browse all current projects
--  Bid/Pledge page
-    - Form for user to make a pledge for a project
+    - Ability to include description and photos
+-  Project detail page
+   -  Description about project including photos
+   -  A list of pledges for this project
+   -  If I am a supporter, a way to create a new pledge for this project
 
 ### API Spec
 
