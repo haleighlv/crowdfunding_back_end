@@ -10,13 +10,12 @@ A website for people without access to mental health treatment to crowdfund the 
 ### Intended Audience/User Stories
 Intended audience: People with a mental health condition who are unable to access treatment due to costs.
 
-- As a user I would like to be able to sign up for an account.
+- As a user I would like to be able to sign up for an account so that I can create a project or make a pledge,
 - As a user with a mental health condition, I want to be able to set up a crowdfunding project to raise funds for treatment.
 - As a user I would like to tell my story and add photos to my project.
 - As a user who has started a crowdfunding project I would like to see how much my project has earnt.
-- As a user I would like to be abe to update my details delete my account/
+- As a user I would like to be abe to update my details delete my account.
 
-- As a supporter I would like to be able to to sign up for an account.
 - As a supporter who has an interest in mental health and treatments, I would like to be able to read peoples stories and the treatment they are looking to undertake.
 - As a supporter who has the means to support others, I would like to support those in need to access treatment.
 - As a supporter, I want the process to be straightforward and I would like to see a list of all pledges I have made.
@@ -48,7 +47,7 @@ Intended audience: People with a mental health condition who are unable to acces
    -  A list of pledges for this project
    -  If I am a supporter, a way to create a new pledge for this project
 
-### API Spec
+https://github.com/haleighlv/crowdfunding_back_end/blob/main/DBSchema_Updated2.png### API Spec
 
 | URL | HTTP Method | Purpose | Request Body | Success Response Code | Authentication/Authorisation |
 | --- | --- | --- | --- |--- |--- |
@@ -59,13 +58,13 @@ Intended audience: People with a mental health condition who are unable to acces
 | --- | --- | --- | --- |--- |--- |
 | /pledges | POST | Creates a new pledge for project | Pledge object | 201 | Must be an existing user own project and is logged in |
 | /pledges/:id | GET | Returns the pledge with ID as specified | N/A | 200 | N/A |
+| /pledges/:id | PUT | Updates the pledge with ID as specified | Project object | 201| Must be an existing user who made the pledge and is logged in |
 | /pledges/:id | DELETE | Deletes the pledge with ID as specified | N/A | 200 | Must be an existing user who made the pledge and is logged in |
 | --- | --- | --- | --- |--- |--- |
 | /users | GET | Returns all users | N/A | 200 | N/A |
 | /users | POST | User signs up | User object | 201 | N/A |
-| /users/login | POST | User logs in | User object | 200 | N/A |
 | /users/:id | PUT | Updates the user with ID as specified | User object | 200 | Must be an existing user who is logged in or admin |
-| /users/:id | DELETE | Deletes the user with the ID as specified as well as any items or bids currently active | N/A | 200 | N/A | Must be an existing user who is logged in or admin
+| /users/:id | DELETE | Deletes the user with the ID as specified as well as any items or bids currently active | N/A | 200 | N/A | Must be an the specified user who is logged in or admin
 
 ### DB Schema
-(https://github.com/haleighlv/crowdfunding_back_end/blob/main/DBSchema_Updated.png)
+https://github.com/haleighlv/crowdfunding_back_end/blob/main/DBSchema_Updated2.png
