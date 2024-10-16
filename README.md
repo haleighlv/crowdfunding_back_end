@@ -9,7 +9,8 @@ A website for people without access to mental health treatment to crowdfund the 
 
 ### Intended Audience/User Stories
 Intended audience: People with a mental health condition who are unable to access treatment due to costs.
-.
+
+- As a user I would like to be able to sign up for an account so that I can create a project or make a pledge.
 - As a user with a mental health condition, I want to be able to set up a crowdfunding project to raise funds for treatment.
 - As a user I would like to tell my story and add photos to my project.
 - As a user who has started a crowdfunding project I would like to see how much my project has earnt.
