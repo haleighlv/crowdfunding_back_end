@@ -24,7 +24,14 @@ class ProjectList(APIView):
             serializer.save(owner=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response
+
+
+    def project_list(request):
+    # orders items by creation date in descending order (newest first)]
+        projects = Project.objects.all().order_by("-date_created")
+
+        return render(request, "project_list.html", {"projects": projects})
 
 
 class ProjectDetail(APIView):
@@ -72,6 +79,12 @@ class PledgeList(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def total_pledges(request):
+        total = Pledge.objects.aggregate(total_sum=Sum("pledge_amount"))[
+            "total_sum"
+        ]
+
+    return render(request, "total_pledges.html", {"total": total})
 
 class PledgeDetail(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsSupporterOrReadOnly]
