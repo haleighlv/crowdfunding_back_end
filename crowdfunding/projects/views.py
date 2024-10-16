@@ -26,14 +26,17 @@ class ProjectList(APIView):
 
         return Response
 
-
-    def project_list(request):
+    def project_list_created (request):
     # orders items by creation date in descending order (newest first)]
         projects = Project.objects.all().order_by("-date_created")
 
-        return render(request, "project_list.html", {"projects": projects})
-
-
+        return render(request, "project_list_created.html", {"projects": projects})
+    
+    def top_projects(request):
+        top_10_projects = Project.objects.all().order_by("-total_sum")[:10]
+        
+        return render(request, "top_projects.html", {"projects: top_10_projects"})
+        
 class ProjectDetail(APIView):
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
@@ -78,6 +81,12 @@ class PledgeList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        for pledge in pledges:
+            if pledge.is_anonymous:
+                pledge.display_name = "Anonymous"
+            else
+                pledge.display_name = supporter.user
 
     def total_pledges(request):
         total = Pledge.objects.aggregate(total_sum=Sum("pledge_amount"))[
