@@ -58,7 +58,7 @@ Intended audience: People with a mental health condition who are unable to acces
 | --- | --- | --- | --- |--- |--- |
 | /pledges | POST | Creates a new pledge for project | Pledge object | 201 | Must be an existing user own project and is logged in |
 | /pledges/:id | GET | Returns the pledge with ID as specified | N/A | 200 | N/A |
-| /pledges/:id | PUT | Updates the pledge with ID as specified | Project object | 201| Must be an existing user who made the pledge and is logged in |
+| /pledges/:id | PUT | Updates the pledge with ID as specified | Pledge object | 201| Must be an existing user who made the pledge and is logged in |
 | /pledges/:id | DELETE | Deletes the pledge with ID as specified | N/A | 200 | Must be an existing user who made the pledge and is logged in |
 | --- | --- | --- | --- |--- |--- |
 | /users | GET | Returns all users | N/A | 200 | N/A |

@@ -14,7 +14,8 @@ class ProjectList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request):
-        projects = Project.objects.all()
+        # projects = Project.objects.all()
+        projects = Project.objects.all().order_by("-date_created")
         serializer = ProjectSerializer(projects, many=True)
         return Response(serializer.data)
 
@@ -26,16 +27,16 @@ class ProjectList(APIView):
 
         return Response
 
-    def project_list_created (request):
-    # orders items by creation date in descending order (newest first)]
-        projects = Project.objects.all().order_by("-date_created")
+    # def project_list_created (request):
+    # # orders items by creation date in descending order (newest first)]
+    #     projects = Project.objects.all().order_by("-date_created")
 
-        return render(request, "project_list_created.html", {"projects": projects})
+    #     return render(request, "project_list_created.html", {"projects": projects})
     
-    def top_projects(request):
-        top_10_projects = Project.objects.all().order_by("-total_sum")[:10]
+    # def top_projects(request):
+    #     top_10_projects = Project.objects.all().order_by("-total_sum")[:10]
         
-        return render(request, "top_projects.html", {"projects: top_10_projects"})
+        # return render(request, "top_projects.html", {"projects: top_10_projects"})
         
 class ProjectDetail(APIView):
 
@@ -82,18 +83,18 @@ class PledgeList(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-        for pledge in pledges:
-            if pledge.is_anonymous:
-                pledge.display_name = "Anonymous"
-            else
-                pledge.display_name = supporter.user
+    for pledge in pledges:
+        if pledge.is_anonymous:
+            pledge.display_name = "Anonymous"
+        else:
+            pledge.display_name = supporter.user
 
-    def total_pledges(request):
-        total = Pledge.objects.aggregate(total_sum=Sum("pledge_amount"))[
-            "total_sum"
-        ]
+    # def total_pledges(request):
+    #     total = Pledge.objects.aggregate(total_sum=Sum("pledge_amount"))[
+    #         "total_sum"
+    #     ]
 
-    return render(request, "total_pledges.html", {"total": total})
+    # return render(request, "total_pledges.html", {"total": total})
 
 class PledgeDetail(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsSupporterOrReadOnly]
