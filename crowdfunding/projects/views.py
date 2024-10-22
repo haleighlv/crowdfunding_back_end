@@ -83,11 +83,11 @@ class PledgeList(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-    for pledge in pledges:
-        if pledge.is_anonymous:
-            pledge.display_name = "Anonymous"
-        else:
-            pledge.display_name = supporter.user
+   # for pledge in pledges:
+    #    if pledge.is_anonymous:
+    #        pledge.display_name = "Anonymous"
+   #     else:
+     #       pledge.display_name = supporter.user
 
     # def total_pledges(request):
     #     total = Pledge.objects.aggregate(total_sum=Sum("pledge_amount"))[
