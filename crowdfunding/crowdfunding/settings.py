@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+
 load_dotenv("../.env")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,13 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-hxecv4jzik__8i3ys(tvz)f)ej_$-5i-jw0e3-f_ygj_l(bg1v"
 SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY",
-    "<django-insecure-hxecv4jzik__8i3ys(tvz)f)ej_$-5i-jw0e3-f_ygj_l(bg1v>"     
+    "<django-insecure-hxecv4jzik__8i3ys(tvz)f)ej_$-5i-jw0e3-f_ygj_l(bg1v>",
 )
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-DEBUG = os.environ.get(
-    "DJANGO_DEBUG"  
-) != "False"
+DEBUG = False
+DEBUG = os.environ.get("DJANGO_DEBUG") != "False"
 
 ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["*"]
@@ -80,7 +79,7 @@ ROOT_URLCONF = "crowdfunding.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "Templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -145,7 +144,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
