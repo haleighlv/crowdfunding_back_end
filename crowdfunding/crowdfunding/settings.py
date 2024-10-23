@@ -34,7 +34,6 @@ SECRET_KEY = os.environ.get(
 DEBUG = False
 #hiyDEBUG = os.environ.get("DJANGO_DEBUG") != "False"
 
-ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
 
