@@ -31,8 +31,7 @@ SECRET_KEY = os.environ.get(
     "<django-insecure-hxecv4jzik__8i3ys(tvz)f)ej_$-5i-jw0e3-f_ygj_l(bg1v>",
 )
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-#hiyDEBUG = os.environ.get("DJANGO_DEBUG") != "False"
+DEBUG = os.environ.get("DJANGO_DEBUG") != "False"
 
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
@@ -78,7 +77,7 @@ ROOT_URLCONF = "crowdfunding.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "Templates"],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
