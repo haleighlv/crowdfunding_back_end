@@ -55,6 +55,7 @@ Intended audience: People with a mental health condition who are unable to acces
 | /projects | POST | Creates a new crowdfunding project | Project object | 201 | Must be an existing user and logged in |
 | /projects/:id| GET | Returns the project with ID as specified | N/A | 200 | N/A |
 | /projects/:id | PUT | Updates the project with ID as specified | Project object | 201 | Must be an existing user who owns project and logged in |
+| /projects/:id | DELETE | Deletes the project with the ID as specified | NA | 200 | Must be an the specified user who created the project and is logged in or admin |
 | --- | --- | --- | --- |--- |--- |
 | /pledges | POST | Creates a new pledge for project | Pledge object | 201 | Must be an existing user own project and is logged in |
 | /pledges/:id | GET | Returns the pledge with ID as specified | N/A | 200 | N/A |
