@@ -11,7 +11,7 @@ class PledgeSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source="owner=_id")
+    owner = serializers.ReadOnlyField(source="owner_id")
     pledges_total = serializers.SerializerMethodField(method_name="get_pledges_total")
     
     def get_pledges_total(self, obj):

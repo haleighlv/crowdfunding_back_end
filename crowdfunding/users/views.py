@@ -34,6 +34,22 @@ class CustomUserDetail(APIView):
         user = self.get_object(pk)
         serializer = CustomerUserSerializer(user)
         return Response(serializer.data)
+    
+    def delete(self, request, pk):
+        user = self.get_object(pk)
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    def put(self, request, pk):
+        user = self.get_object(pk)
+        serializer = CustomerUserSerializer(
+            instance=user, data=request.data, partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CustomAuthToken(ObtainAuthToken):
