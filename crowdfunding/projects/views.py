@@ -25,8 +25,10 @@ class ProjectList(APIView):
             serializer.save(owner=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        return Response
-
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
     # def project_list_created (request):
     # # orders items by creation date in descending order (newest first)]
     #     projects = Project.objects.all().order_by("-date_created")
@@ -65,6 +67,14 @@ class ProjectDetail(APIView):
             return Response(serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk):
+        project = self.get_object(pk)
+        project.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    
+  
 
 
 class PledgeList(APIView):
@@ -129,4 +139,17 @@ class PledgeDetail(APIView):
     def delete(self, request, pk):
             pledge = self.get_object(pk)
             pledge.delete()
-            return Response()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ProjectPledgeList(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get(self, request, pk):
+        try:
+            project = Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            raise Http404
+
+        pledges = Pledge.objects.filter(project=project)
+        serializer = PledgeSerializer(pledges, many=True)
+        return Response(serializer.data)
