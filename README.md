@@ -52,19 +52,19 @@ Intended audience: People with a mental health condition who are unable to acces
 | URL | HTTP Method | Purpose | Request Body | Success Response Code | Authentication/Authorisation |
 | --- | --- | --- | --- |--- |--- |
 | /projects | GET | Returns all projects | N/A | 200 | N/A |
-| /projects | POST | Creates a new crowdfunding project | Project object | 201 | Must be an existing user and logged in |
-| /projects/:id| GET | Returns the project with ID as specified | N/A | 200 | N/A |
-| /projects/:id | PUT | Updates the project with ID as specified | Project object | 201 | Must be an existing user who owns project and logged in |
+| /projects | POST | Creates a new crowdfunding project | { "title", "description", "goal", "image"} | 201 Created | Must be an existing user and logged in |
+| /projects/:id| GET | Returns the project with ID as specified | N/A | 200 OK | N/A |
+| /projects/:id | PUT | Updates the project with ID as specified | { "title", "description", "image" } | 200 OK | Must be an existing user who owns project and logged in |
 | /projects/:id | DELETE | Deletes the project with the ID as specified | NA | 200 | Must be an the specified user who created the project and is logged in or admin |
 | --- | --- | --- | --- |--- |--- |
 | /pledges | POST | Creates a new pledge for project | Pledge object | 201 | Must be an existing user own project and is logged in |
-| /pledges/:id | GET | Returns the pledge with ID as specified | N/A | 200 | N/A |
-| /pledges/:id | PUT | Updates the pledge with ID as specified | Pledge object | 201| Must be an existing user who made the pledge and is logged in |
-| /pledges/:id | DELETE | Deletes the pledge with ID as specified | N/A | 200 | Must be an existing user who made the pledge and is logged in |
+| /pledges/:id | GET | Returns the pledge with ID as specified | N/A | 200 OK | N/A |
+| /pledges/:id | PUT | Updates the pledge with ID as specified | { "amount", "anonymous" } | 201 created | Must be an existing user who made the pledge and is logged in |
+| /pledges/:id | DELETE | Deletes the pledge with ID as specified | N/A | 200 OK | Must be an existing user who made the pledge and is logged in |
 | --- | --- | --- | --- |--- |--- |
-| /users | GET | Returns all users | N/A | 200 | N/A |
-| /users | POST | User signs up | User object | 201 | N/A |
-| /users/:id | PUT | Updates the user with ID as specified | User object | 200 | Must be an existing user who is logged in or admin |
+| /users | GET | Returns all users | N/A | 200 OK | Admin |
+| /users | POST | User signs up | { "username", "email", "password" } | 201 Created | N/A |
+| /users/:id | PUT | Updates the user with ID as specified | { "username", "email", "first_name", "last_name", "password" } | 200 OK | Must be an existing user who is logged in or admin |
 | /users/:id | DELETE | Deletes the user with the ID as specified as well as any items or bids currently active | N/A | 200 | N/A | Must be an the specified user who is logged in or admin
 
 ### DB Schema
