@@ -93,30 +93,30 @@ https://github.com/haleighlv/crowdfunding_back_end/blob/933d29f9a71d584f5bec775a
 
 ### Registering a new users and creating a new project
 
-REGISTER USER
-Endpoint: POST /users/
-Action: Create new user account
-Required data: username (unique), email address, password
+### REGISTER USER
+- Endpoint: POST /users/
+- Action: Create new user account
+- Required data: username (unique), email address, password
 
 1. Send a POST request to /users/ with the above required data in JSON format.
 2. Ensure the Content-Type header is set to application/json.
 3. If successful, confirmation of the user created will be displayed.
 
-OBTAIN AN AUTHENTICATION TOKEN
-Endpoint: POST /api-auth-token/
-Action: Authenticate and receive token for future requests
-Required data: username, password
+### OBTAIN AN AUTHENTICATION TOKEN
+- Endpoint: POST /api-auth-token/
+- Action: Authenticate and receive token for future requests
+- Required data: username, password
 
 1. Send a POST request to /api-token-auth/ with the above required data in JSON format.
 2. Ensure the Content-Type header is set to application/json.
 3. If successful, you'll receive an authentication token which is need to authenticate future requests.
 
-CREATE A NEW PROJECT
-Endpoint: POST /projects/
-Action: Create a new project
-Authorisation: Include your token under "Auth" with the prefix "Token"
-Content type: application/json
-Required data: project title, description, funding goal, image URL, is_open if open to pledges otherwise falese, date created (Usually auto generatated by the server).
+### CREATE A NEW PROJECT
+- Endpoint: POST /projects/
+- Action: Create a new project
+- Authorisation: Include your token under "Auth" with the prefix "Token"
+- Content type: application/json
+- Required data: project title, description, funding goal, image URL, is_open if open to pledges otherwise falese, date created (Usually auto generatated by the server).
 
 1. Send a POST request to /aprojects/ with the above required data in JSON format.
 2. Ensure the Content-Type header is set to application/json.
