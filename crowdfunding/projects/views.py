@@ -23,7 +23,10 @@ class ProjectList(APIView):
         serializer = ProjectSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(owner=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(
+                serializer.data, 
+                status=status.HTTP_201_CREATED
+                )
 
         return Response(
             serializer.errors,
@@ -74,8 +77,6 @@ class ProjectDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
-
 class PledgeList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
@@ -88,9 +89,14 @@ class PledgeList(APIView):
         serializer = PledgeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(supporter=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(
+                serializer.data, 
+                status=status.HTTP_201_CREATED
+                )
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                serializer.errors, 
+                status=status.HTTP_400_BAD_REQUEST)
         
    # for pledge in pledges:
     #    if pledge.is_anonymous:
@@ -108,23 +114,15 @@ class PledgeList(APIView):
 class PledgeDetail(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsSupporterOrReadOnly]
 
-    def get_object(self, pk):
-        try:
-            pledge = Pledge.objects.get(pk=pk)
-            self.check_object_permissions(self.request, pledge)
-            return pledge
-        except Pledge.DoesNotExist:
-            raise Http404
-
     def get(self, request, pk):
-        pledge = self.get_object(pk)
-        serializer = PledgeSerializer(pledge)
-        return Response(serializer.data)
-
+            pledges = Pledge.objects.get(supporter=pk)
+            serializer = PledgeSerializer(pledges, many=True)
+            return Response(serializer.data)
+    
     def put(self, request, pk):
         pledge = self.get_object(pk)
         serializer = PledgeSerializer(
-            instance=pledge,
+            instance=project,
             data=request.data,
             partial=True,
         )
