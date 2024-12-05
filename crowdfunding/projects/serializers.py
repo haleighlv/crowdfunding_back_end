@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from django.apps import apps
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class PledgeSerializer(serializers.ModelSerializer):
@@ -39,3 +41,17 @@ class ProjectDetailSerializer(ProjectSerializer):
         instance.owner = validated_data.get("owner", instance.owner)
         instance.save()
         return instance
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
+
+class DonationSerializer(serializers.ModelSerializer):
+    supporter = UserSerializer(read_only=True)
+    
+    class Meta:
+        model = apps.get_model("projects.Donation")
+        fields = ['id', 'supporter', 'amount', 'comment', 'anonymous', 'project']
