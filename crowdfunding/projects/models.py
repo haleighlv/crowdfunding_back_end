@@ -33,3 +33,22 @@ class Pledge(models.Model):
         related_name="pledges", null=True, 
         blank=True
     )
+
+
+class Donation(models.Model):
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    comment = models.CharField(max_length=200, blank=True)
+    anonymous = models.BooleanField(default=False)
+    project = models.ForeignKey(
+        'Project',
+        on_delete=models.CASCADE,
+        related_name='donations'
+    )
+    supporter = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name='donations'
+    )
+    
+    def __str__(self):
+        return f"{self.amount} to {self.project.title} by {self.supporter.username}"
