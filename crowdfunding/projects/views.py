@@ -43,7 +43,6 @@ class ProjectList(APIView):
 class ProjectDetail(APIView):
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
-
     def get_object(self, pk):
         try:
             project = Project.objects.get(pk=pk)
@@ -67,6 +66,8 @@ class ProjectDetail(APIView):
             return Response(serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
     
     def delete(self, request, pk):
         project = self.get_object(pk)
